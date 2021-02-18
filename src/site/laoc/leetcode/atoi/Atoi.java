@@ -1,4 +1,4 @@
-package site.laoc.atoi;
+package site.laoc.leetcode.atoi;
 
 public class Atoi {
 

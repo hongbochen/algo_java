@@ -1,4 +1,4 @@
-package site.laoc.zigzag;
+package site.laoc.leetcode.zigzag;
 
 // https://www.jianshu.com/p/8b83c6a2eff8
 public class Zigzag {

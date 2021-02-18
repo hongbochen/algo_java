@@ -1,4 +1,4 @@
-package site.laoc.palindrome_number;
+package site.laoc.leetcode.palindrome_number;
 
 public class PlaindromeNumber {
     public boolean isPalindrome(int x) {

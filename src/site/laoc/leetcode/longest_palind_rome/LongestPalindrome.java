@@ -1,4 +1,4 @@
-package site.laoc.longest_palind_rome;
+package site.laoc.leetcode.longest_palind_rome;
 
 public class LongestPalindrome {
 

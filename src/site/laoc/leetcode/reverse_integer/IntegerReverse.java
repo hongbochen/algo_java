@@ -1,4 +1,4 @@
-package site.laoc.reverse_integer;
+package site.laoc.leetcode.reverse_integer;
 
 public class IntegerReverse {
 
