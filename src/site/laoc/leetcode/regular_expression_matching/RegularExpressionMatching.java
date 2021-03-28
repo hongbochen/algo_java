@@ -1,87 +1,43 @@
 package site.laoc.leetcode.regular_expression_matching;
 
+import com.sun.jmx.remote.internal.ArrayQueue;
+
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class RegularExpressionMatching {
 
     public boolean isMatch(String s, String p) {
-        int sIndex = 0;
-        for(int i = 0;i < p.length();i++){
 
-            char m = p.charAt(i);
+        if(p.isEmpty())
+            return s.isEmpty();
 
-            char target = '1';
-            if(m == '*'){
-                if(i == 0){
-                    return false;
-                }else{
-                    target = p.charAt(i-1);
-                    if(target == '.'){
-                        if(i + 1 < p.length()){
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    }else{
-                        //System.out.println("target: " + target);
-                        for(; sIndex < s.length();sIndex++){
-                            char tmp = s.charAt(sIndex);
-                            if(tmp != target){
-                               // System.out.println("sIndex: " + sIndex);
-                                //System.out.println("i == " + i);
-                                break;
-                            }
-                        }
+        if(p.length() == 1)
+            return s.length() == 1 && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.');
 
-                    }
-                }
-            }else if(m == '.'){
-                char tmp = s.charAt(sIndex);
-                //System.out.println("next");
-                sIndex++;
-            }else{
-                if(i != p.length()-1){
-                    if(p.charAt(i+1) == '*' && i == 0){
-                        //System.out.println("next");
-                        sIndex++;
-                    }else{
-                        char tmp = s.charAt(sIndex);
-                        if(tmp != m){
-                            //System.out.println("false");
-                            return false;
-                        }
-                        //System.out.println("next");
-                        sIndex++;
-                    }
-                }else{
-                    if(sIndex >= s.length()){
-                        return false;
-                    }
-
-                    char tmp = s.charAt(sIndex);
-                    if(tmp != m){
-                        //System.out.println("false");
-                        return false;
-                    }
-                    //System.out.println("next");
-                    sIndex++;
-                }
-
+        if(p.charAt(1) != '*'){
+            if(s.isEmpty()){
+                return false;
             }
+
+            return (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') && isMatch(s.substring(1),p.substring(1));
         }
 
-        if(sIndex != s.length()){
-            //System.out.println(false);
-            return false;
+        while(!s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.')){
+            if(isMatch(s,p.substring(2))) return true;
+            s = s.substring(1);
         }
 
-        return true;
+        return isMatch(s,p.substring(2));
     }
 
     public static void main(String [] args){
 
         RegularExpressionMatching regularExpressionMatching = new RegularExpressionMatching();
 
-        String s = "ab";
-        String p = ".*c";
+        String s = "aaa";
+        String p = "aaaa";
 
         boolean matching = regularExpressionMatching.isMatch(s,p);
         System.out.println(matching);
