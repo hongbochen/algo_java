@@ -4,39 +4,23 @@ import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
+        String line = "W60b44972e4b0b8fbd83fbfd0|10001004989022|3|3142000|3142000|1||2021053111411341104802|3141900|100||";
 
-        String str1 = scanner.nextLine();
-        String str2 = scanner.nextLine();
+        String tmps[] = line.split("\\|");
 
-        // 00010101000
-        // 11010010101
-
-        StringBuffer sb = new StringBuffer();
-        int size = 0;
-        for(int i = 0;i < str1.length();i++){
-            char tmp = str1.charAt(i);
-
-            for(int m = 0;m < str2.length();m++){
-                if(str2.charAt(m) == str1.charAt(i)){
-                    boolean isrun = true;
-                    int p = 0;
-                    while(isrun){
-                        if((i+p < str1.length()) && (m+p < str2.length()) && (str1.charAt(i+p) == str2.charAt(m+p))){
-                            p++;
-                        }else{
-                            isrun = false;
-                        }
-                    }
-
-                    if(p > size){
-                        size = p;
-                    }
-
-                }
-            }
+        if(tmps.length != 10){
+            System.out.println("数组数量不够10个");
         }
 
-        System.out.println(size+2);
+
+        for(int i = 0;i < tmps.length;i++){
+            System.out.println(i + "-------------" + tmps[i]);
+        }
+
+//        String tradeNo = tmps[0];
+//        String state = tmps[6];
+//        String unionTradeNo = tmps[7];
+//        String unionPrice = tmps[8];
+//        String servicePrice = tmps[9];
     }
 }
